@@ -6,14 +6,7 @@ const Visualizer = () => {
 
 
     useEffect( () => {
-        //TODO: allow for adjusing of array length
-        let arr = []
-        // populate array with random numbers between 10 - 1000
-        // allow for duplicate numbers as sorting algorithms should be able to handle duplicate numbers
-        for(let i = 0; i < 150; i++){
-            arr.push(generateRandomNumber(10, 200))
-        }
-        setArray(arr)
+        generateNewArray()
     }, [])
 
     const generateRandomNumber = (min, max) => {
@@ -21,7 +14,10 @@ const Visualizer = () => {
     }
 
     const generateNewArray = () => {
+        //TODO: allow for adjusing of array length
         let arr = []
+        // populate array with random numbers between 10 - 1000
+        // allow for duplicate numbers as sorting algorithms should be able to handle duplicate numbers
         for (let i = 0; i < 150; i++) {
             arr.push(generateRandomNumber(10, 200));
         }
@@ -45,7 +41,7 @@ const Visualizer = () => {
                     <button onClick = {generateNewArray}>Generate New Array</button>
                 </li>
                 <hr class="divider"></hr>
-                <li>
+                <li className = 'sort'>
                     <button>Sort</button>
                 </li>
             </ul>
