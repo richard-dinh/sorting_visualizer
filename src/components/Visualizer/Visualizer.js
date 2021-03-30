@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import "./Visualizer.css";
+import algorithms from '../../utils/sortingAlgorithms/algorithms'
 const Visualizer = () => {
 
     const [array, setArray] = useState([])
@@ -23,6 +24,36 @@ const Visualizer = () => {
         }
         setArray(arr);
     }
+
+    const handleBubbleSort = () => {
+
+
+        let {animations} = algorithms.BubbleSort(array)
+        let visual_arr = document.getElementsByClassName("array_column")
+        for(let i = 0; i < animations.length; i++){
+            if(animations[i].compare){
+                let [index1, index2] = animations[i].compare
+                setTimeout(() => {
+                    visual_arr[index1].style.backgroundColor = 'green'
+                    visual_arr[index2].style.backgroundColor = 'green'
+                }, (i*2))
+                // set color back to blue
+                setTimeout(() => {
+                    visual_arr[index1].style.backgroundColor = 'blue'
+                    visual_arr[index2].style.backgroundColor = 'blue'
+                }, (i*2) + 2)
+            }
+            else{
+                let [index1, index2] = animations[i].swap
+                setTimeout(() => {
+                    let tempHeight = visual_arr[index1].style.height
+                    visual_arr[index1].style.height = visual_arr[index2].style.height
+                    visual_arr[index2].style.height = tempHeight
+                }, (i*2));
+            }
+        }
+    }
+
     return(
         <div className = 'container'>
             <ul className = 'options'>
@@ -36,13 +67,13 @@ const Visualizer = () => {
                 <li>
                     <button>Quick Sort</button>
                 </li>
-                <hr class="divider"></hr>
+                <hr className="divider"></hr>
                 <li>
                     <button onClick = {generateNewArray}>Generate New Array</button>
                 </li>
-                <hr class="divider"></hr>
+                <hr className="divider"></hr>
                 <li className = 'sort'>
-                    <button>Sort</button>
+                    <button onClick = {handleBubbleSort}>Sort</button>
                 </li>
             </ul>
             <div className = 'array_container'>
