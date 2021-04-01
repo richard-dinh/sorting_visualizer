@@ -26,33 +26,49 @@ const Visualizer = () => {
     }
 
     const handleBubbleSort = () => {
-
-
         let {animations} = algorithms.BubbleSort(array)
-        let visual_arr = document.getElementsByClassName("array_column")
+        handleAnimations(animations)
+    }
+
+    const handleMergeSort = () => {
+        let {array: sortedArr, animations} = algorithms.MergeSort(array)
+        handleAnimations(animations)
+    }
+
+    const handleAnimations = animations => {
+        let visual_arr = document.getElementsByClassName("array_column");
         for(let i = 0; i < animations.length; i++){
             if(animations[i].compare){
                 let [index1, index2] = animations[i].compare
                 setTimeout(() => {
-                    visual_arr[index1].style.backgroundColor = 'green'
-                    visual_arr[index2].style.backgroundColor = 'green'
-                }, (i))
+                    visual_arr[index1].style.backgroundColor = 'red'
+                    visual_arr[index2].style.backgroundColor = 'red'
+                }, (i*5))
                 // set color back to blue
                 setTimeout(() => {
                     visual_arr[index1].style.backgroundColor = 'blue'
                     visual_arr[index2].style.backgroundColor = 'blue'
-                }, (i) + 2)
+                }, (i*5) + 2)
             }
-            else{
+            else if (animations[i].swap){
                 let [index1, index2] = animations[i].swap
                 setTimeout(() => {
                     let tempHeight = visual_arr[index1].style.height
                     visual_arr[index1].style.height = visual_arr[index2].style.height
                     visual_arr[index2].style.height = tempHeight
-                }, (i));
+                }, (i*5));
+            }
+            else if(animations[i].replace){
+                // replace contains [index, valueToReplace]
+                let [index, value] = animations[i].replace
+                console.log(index, value)
+                setTimeout(() => {
+                    visual_arr[index].style.height = `${value}px`
+                }, (i*5));
             }
         }
     }
+
 
     return(
         <div className = 'container'>
@@ -73,7 +89,7 @@ const Visualizer = () => {
                 </li>
                 <hr className="divider"></hr>
                 <li className = 'sort'>
-                    <button onClick = {handleBubbleSort}>Sort</button>
+                    <button onClick = {handleMergeSort}>Sort</button>
                 </li>
             </ul>
             <div className = 'array_container'>

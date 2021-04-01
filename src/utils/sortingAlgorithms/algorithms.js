@@ -21,7 +21,7 @@ const algorithms = {
         return { arr, animations }
     },
 
-    MergeSort: (arr, start, end) => {
+    MergeSort: (arr, start = 0, end = arr.length) => {
         return mergeSort(arr, start, end)
     },
 }
