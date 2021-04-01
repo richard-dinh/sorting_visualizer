@@ -1,3 +1,4 @@
+const mergeSort = require('./mergeSort')
 
 const algorithms = {
     BubbleSort: arr => {
@@ -18,7 +19,11 @@ const algorithms = {
         }
         // return the animations and arr
         return { arr, animations }
-    }
+    },
+
+    MergeSort: (arr, start, end) => {
+        return mergeSort(arr, start, end)
+    },
 }
 
 
@@ -29,6 +34,7 @@ const swapValues = (arr, index1, index2) => {
     arr[index2] = temp
     return arr
 }
+
 
 
 module.exports = algorithms

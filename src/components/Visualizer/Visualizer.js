@@ -36,12 +36,12 @@ const Visualizer = () => {
                 setTimeout(() => {
                     visual_arr[index1].style.backgroundColor = 'green'
                     visual_arr[index2].style.backgroundColor = 'green'
-                }, (i*2))
+                }, (i))
                 // set color back to blue
                 setTimeout(() => {
                     visual_arr[index1].style.backgroundColor = 'blue'
                     visual_arr[index2].style.backgroundColor = 'blue'
-                }, (i*2) + 2)
+                }, (i) + 2)
             }
             else{
                 let [index1, index2] = animations[i].swap
@@ -49,7 +49,7 @@ const Visualizer = () => {
                     let tempHeight = visual_arr[index1].style.height
                     visual_arr[index1].style.height = visual_arr[index2].style.height
                     visual_arr[index2].style.height = tempHeight
-                }, (i*2));
+                }, (i));
             }
         }
     }
