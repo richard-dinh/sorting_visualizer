@@ -47,7 +47,7 @@ const mergeSort = (arr, start, end, animations = []) => {
     // need to add start to midpoint in order to get numbers in between start and end
     let left = mergeSort(arr, start, midpoint+start, animations)
     let right = mergeSort(arr, midpoint + 1+ start, end, animations)
-    let mergeObject = mergeArr(arr, left, right, animations);
+    let mergeObject = mergeArr(arr, left, right, animations)
     return mergeObject
 }
 
