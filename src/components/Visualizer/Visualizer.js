@@ -35,6 +35,10 @@ const Visualizer = () => {
         handleAnimations(animations)
     }
 
+    const handleQuickSort = () => {
+        let {array: sortedArr, animations} = algorithms.QuickSort(array)
+        handleAnimations(animations)
+    }
     const handleAnimations = animations => {
         let visual_arr = document.getElementsByClassName("array_column");
         for(let i = 0; i < animations.length; i++){
@@ -61,7 +65,6 @@ const Visualizer = () => {
             else if(animations[i].replace){
                 // replace contains [index, valueToReplace]
                 let [index, value] = animations[i].replace
-                console.log(index, value)
                 setTimeout(() => {
                     visual_arr[index].style.height = `${value}px`
                 }, (i*5));
@@ -89,7 +92,7 @@ const Visualizer = () => {
                 </li>
                 <hr className="divider"></hr>
                 <li className = 'sort'>
-                    <button onClick = {handleMergeSort}>Sort</button>
+                    <button onClick = {handleQuickSort}>Sort</button>
                 </li>
             </ul>
             <div className = 'array_container'>
